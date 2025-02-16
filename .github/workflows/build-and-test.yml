@@ -38,3 +38,15 @@ jobs:
         with:
           name: my-artifact
           path: ./artifact/hello.txt
+
+      - uses: actions/download-artifact@v4
+        id: test
+        with:
+          name: "my-artifact"
+          path: ./artifacts
+
+      - name: "Echo download path"
+        run: echo ${{ steps.test.outputs.download-path }}
+
+      - name: "Cat world.txt"
+        run: cat ${{ steps.test.outputs.download-path }}/hello.txt
