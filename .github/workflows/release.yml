@@ -1,0 +1,34 @@
+name: Create release tag and release notes
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  create-release-tag:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GIT_HUB_TOKEN}}
+      TZ: "Asia/tokyo"
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get previous tag
+        if: pre_tag
+        run: |
+          echo "pre_tag=$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/suzy1031/sandbox-github/releases/latest | jq -r .tag_name)" >> $GITHUB_OUTPUT
+
+      - name: Generate tag
+        id: release_tag
+        run: |
+          today=$(date +'%Y.%m.%d')
+          pre_release_date=$(echo ${{ steps.pre_tag.outputs.pre_tag }} | awk -F'-' '{print $1}')
+          pre_release_count=$(echo ${{ steps.pre_tag.outputs.pre_tag }} | awk -F'-' '{print $2}')
+          if [[ ! $pre_release_date = $today ]]; then
+            pre_release_count=0
+          fi
+          echo "release_tag=$today-$(($pre_release_count + 1))" >> $GITHUB_OUTPUT
