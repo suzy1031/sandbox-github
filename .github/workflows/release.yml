@@ -1,34 +1,36 @@
-name: Create release tag and release notes
+name: Create Release Note
 
 on:
   pull_request:
-    types: [closed]
+    # PRが閉じたタイミングで実行
+    types:
+      - closed
+    # mainブランチのみを対象とする
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
-  create-release-tag:
-    if: github.event.pull_request.merged == true
+  release:
+    permissions:
+      # write permission is required to create a github release
+      contents: write
+      # リリースノートを書くためwrite用のpermissionを付与
+      pull-requests: write
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'release')
     runs-on: ubuntu-latest
-
-    env:
-      GH_TOKEN: ${{ secrets.GIT_HUB_TOKEN}}
-      TZ: "Asia/tokyo"
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Get previous tag
-        id: pre_tag
-        run: |
-          echo "pre_tag=$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/suzy1031/sandbox-github/releases/latest | jq -r .tag_name)" >> $GITHUB_OUTPUT
-
-      - name: Generate tag
-        id: release_tag
-        run: |
-          today=$(date +'%Y.%m.%d')
-          pre_release_date=$(echo ${{ steps.pre_tag.outputs.pre_tag }} | awk -F'-' '{print $1}')
-          pre_release_count=$(echo ${{ steps.pre_tag.outputs.pre_tag }} | awk -F'-' '{print $2}')
-          if [[ ! $pre_release_date = $today ]]; then
-            pre_release_count=0
-          fi
-          echo "release_tag=$today-$(($pre_release_count + 1))" >> $GITHUB_OUTPUT
+      - name: Create Release Tag And Note
+        env:
+          # このトークンは自動生成されるのでsecretsを登録する必要ない
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PRのタイトルと内容をRelease内容に追加する
+          RELEASE_TAG: ${{ github.event.pull_request.title }}
+        uses: release-drafter/release-drafter@v5
+        with:
+          tag: ${{ env.RELEASE_TAG }}
+          name: Release ${{ env.RELEASE_TAG }}
+          version: ${{ env.RELEASE_TAG }}
+          publish: true
