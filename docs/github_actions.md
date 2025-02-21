@@ -32,3 +32,4 @@ $ act
 
 ## release tag and note
 wip
+ref: [release-drafter](https://github.com/release-drafter/release-drafter)
