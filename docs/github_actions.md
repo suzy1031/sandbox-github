@@ -2,12 +2,14 @@
 
 ## workflow
 ref:
-https://zenn.dev/farstep/books/learn-github-actions/viewer/artifacts-and-cache
-https://zenn.dev/jordan/articles/b6c1e905adab31
+
+- https://zenn.dev/farstep/books/learn-github-actions/viewer/artifacts-and-cache
+- https://zenn.dev/jordan/articles/b6c1e905adab31
 
 ## act
 
-ref: https://zenn.dev/rescuenow/articles/db176ea5fe2c92
+ref:
+- https://zenn.dev/rescuenow/articles/db176ea5fe2c92
 
 ### github codespaces
 ```bash
@@ -32,4 +34,8 @@ $ act
 
 ## release tag and note
 wip
-ref: [release-drafter](https://github.com/release-drafter/release-drafter)
+
+ref:
+- [release-drafter](https://github.com/release-drafter/release-drafter)
+
+- [PRマージごとにDraftリリースノートを自動生成する](https://zenn.dev/chocoyama/articles/654a80f96d10ef)
