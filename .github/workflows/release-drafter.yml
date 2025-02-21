@@ -1,14 +1,11 @@
 name: Create Release Note
 
 on:
+  # pull_request event is required only for autolabeler
   pull_request:
-    types:
-      - closed
+    types: [opened, reopened, synchronize]
     branches:
       - main
-    # pull_request_target event is required for autolabeler to support PRs from forks
-  pull_request_target:
-    types: [opened, reopened, synchronize]
 
 permissions:
   contents: write
