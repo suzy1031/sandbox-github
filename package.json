@@ -8,7 +8,8 @@
 		"lint": "biome lint --write ./src/**/**",
 		"format": "biome format --write ./src/**/**",
 		"check": "biome check --write ./src/**/**",
-		"start": "ts-node"
+		"start": "ts-node",
+		"prepare": "husky"
 	},
 	"keywords": [],
 	"author": "",
@@ -16,8 +17,11 @@
 	"description": "",
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@commitlint/cli": "^19.7.1",
+		"@commitlint/config-conventional": "^19.7.1",
 		"@types/jest": "29.4.0",
 		"@types/node": "18.14.2",
+		"husky": "^9.1.7",
 		"jest": "29.4.3",
 		"lefthook": "^1.10.10",
 		"ts-jest": "29.0.5",
