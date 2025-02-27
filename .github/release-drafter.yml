@@ -11,6 +11,7 @@ categories:
   - title: '🛠 Maintenance'
     labels:
       - 'chore'
+      - 'spec'
 
 autolabeler:
   - label: 'chore'
@@ -28,6 +29,12 @@ autolabeler:
       - '/feature\/.+/'
     body:
       - '/JIRA-[0-9]{1,4}/'
+  - label: 'spec'
+    files:
+      - '*.spec.ts'
+      - '*.spec.tsx'
+    branch:
+      - '/test\/.+/'
 
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 
