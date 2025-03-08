@@ -24,7 +24,10 @@
 		"enabled": true,
 		"ignore": ["node_modules"],
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"complexity": {
+				"noStaticOnlyClass": "off"
+			}
 		}
 	},
 	"javascript": {
