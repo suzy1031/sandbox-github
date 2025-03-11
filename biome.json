@@ -27,6 +27,9 @@
 			"recommended": true,
 			"complexity": {
 				"noStaticOnlyClass": "off"
+			},
+			"suspicious": {
+				"noGlobalAssign": "off"
 			}
 		}
 	},
