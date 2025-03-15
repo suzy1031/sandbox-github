@@ -1,3 +1,5 @@
+import { it } from 'node:test';
+import { test, expect } from 'vitest';
 const numberValue = 0;
 const stringValue = '文字列';
 const booleanValue = true;
@@ -210,13 +212,15 @@ const fetchDataWithCallback = callback => {
 	setTimeout(callback, 3000, 'lemon');
 };
 
-test('return lemon', done => {
-	const callback = data => {
-		expect(data).toBe('lemon');
-		done();
-	};
-	fetchDataWithCallback(callback);
-});
+// https://vitest.dev/guide/migration.html#done-callback
+test('return lemon', () =>
+	new Promise(done => {
+		const callback = data => {
+			expect(data).toBe('lemon');
+			done(data);
+		};
+		fetchDataWithCallback(callback);
+	}));
 
 const fetchDataWithPromiseResolve = () =>
 	new Promise(resolve => setTimeout(resolve, 1000, 'lemon'));

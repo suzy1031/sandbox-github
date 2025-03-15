@@ -1,5 +1,7 @@
+import { describe, afterEach, it, vi, expect } from 'vitest';
+import type { MockInstance } from 'vitest';
 describe('Math random with spyOn', () => {
-	let spy: jest.SpyInstance;
+	let spy: MockInstance;
 
 	afterEach(() => {
 		spy.mockRestore();
@@ -7,7 +9,7 @@ describe('Math random with spyOn', () => {
 	});
 
 	it('Math.random return 1', () => {
-		spy = jest.spyOn(Math, 'random').mockImplementation(() => 1);
+		spy = vi.spyOn(Math, 'random').mockImplementation(() => 1);
 		expect(Math.random()).toBe(1);
 	});
 

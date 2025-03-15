@@ -1,6 +1,7 @@
+import { describe, test, expect, vi } from 'vitest';
 describe('jest.fn()', () => {
 	test('mock object specification', () => {
-		const mockFunction = jest.fn();
+		const mockFunction = vi.fn();
 
 		expect(mockFunction('foo', 'bar')).toBe(undefined);
 
@@ -23,13 +24,13 @@ describe('jest.fn()', () => {
 });
 
 test('return Hello', () => {
-	const mockFunction = jest.fn(() => 'Hello');
+	const mockFunction = vi.fn(() => 'Hello');
 	// const mockFunction = jest.fn().mockImplementation(() => 'Hello'); // 上記と同じ設定
 	expect(mockFunction()).toBe('Hello');
 });
 
 test('return Hello once then it returns Goodbye', () => {
-	const mockFunction = jest
+	const mockFunction = vi
 		.fn()
 		.mockImplementationOnce(() => 'Hello')
 		.mockImplementationOnce(() => 'Goodbye');

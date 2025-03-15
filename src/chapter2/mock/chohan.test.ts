@@ -1,8 +1,9 @@
+import { vi, describe, it, expect } from 'vitest';
 import { chohan } from './chohan';
 
-jest.mock('./seed', () => {
+vi.mock('./seed', () => {
 	return {
-		seed: jest
+		seed: vi
 			.fn()
 			.mockImplementationOnce(() => 2)
 			.mockImplementationOnce(() => 1),
