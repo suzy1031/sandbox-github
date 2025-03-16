@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosStatic } from 'axios';
-import Users from './users';
+import Users from '../src/user';
 import { vi, test, expect } from 'vitest';
 import type { Mocked } from 'vitest';
 

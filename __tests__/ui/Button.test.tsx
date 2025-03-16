@@ -1,6 +1,6 @@
 import renderer from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+import { Button } from '../../src/ui/Button';
 import { describe, it, expect } from 'vitest';
 
 describe('button', () => {

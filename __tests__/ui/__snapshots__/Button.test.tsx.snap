@@ -9,13 +9,3 @@ exports[`button > renders correctly with react-test-renderer 1`] = `
   ON
 </button>
 `;
-
-exports[`button renders correctly with react-test-renderer 1`] = `
-<button
-  className="primary"
-  onClick={[Function]}
-  type="button"
->
-  ON
-</button>
-`;
