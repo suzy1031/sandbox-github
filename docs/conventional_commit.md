@@ -1,9 +1,10 @@
 # Conventional Commits
 
-## commitlint + husky + git-cz
+## commitlint + ~~husky~~ left-hook + git-cz
 ref
 - [commitlintというコミットメッセージのリンターを導入してみた（前編：huskyを使ってコミット前にリントする）](https://zenn.dev/kalubi/articles/27fa889c338cdf)
 - [Conventional Commitsでコミットメッセージを分かりやすくする](https://soudai-s.com/align-commit-messages-by-conventional-commits)
+- [commitlint + lefthook](https://zenn.dev/ebiyy/scraps/112895ebf571dd)
 
 ## Usage
 
