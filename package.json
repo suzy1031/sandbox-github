@@ -10,7 +10,6 @@
 		"format": "biome format --write ./src/**/**",
 		"check": "biome check --write ./src/**/**",
 		"start": "ts-node",
-		"prepare": "husky",
 		"commit": "git-cz"
 	},
 	"keywords": [],
