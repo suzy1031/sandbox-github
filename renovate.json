@@ -3,5 +3,12 @@
 	"extends": ["config:recommended"],
 	"dependencyDashboard": false,
 	"automerge": false,
-	"addLabels": ["renovate"]
+	"addLabels": ["renovate"],
+	"packageRules": [
+		{
+			"matchPackageNames": ["eslint", "*eslint"],
+			"matchUpdateTypes": ["minor", "patch"],
+			"enabled": true
+		}
+	]
 }
