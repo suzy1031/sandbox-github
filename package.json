@@ -21,7 +21,7 @@
 		"@commitlint/cli": "^19.7.1",
 		"@commitlint/config-conventional": "^19.7.1",
 		"@testing-library/react": "13.4.0",
-		"@types/node": "18.14.2",
+		"@types/node": "18.19.81",
 		"@types/react": "18.0.27",
 		"@types/react-dom": "18.0.10",
 		"@types/react-test-renderer": "18.0.0",
