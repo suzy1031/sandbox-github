@@ -4,6 +4,7 @@
 	"dependencyDashboard": false,
 	"automerge": false,
 	"addLabels": ["renovate"],
+	"prConcurrentLimit": 0,
 	"packageRules": [
 		{
 			"matchPackageNames": ["eslint", "*eslint"],

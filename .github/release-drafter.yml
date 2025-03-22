@@ -18,8 +18,10 @@ autolabeler:
     files:
       - '*.md'
       - '*.yml'
+      - '*.json'
     branch:
       - '/docs{0,1}\/.+/'
+      - '/chore\/.+/'
   - label: 'bug'
     branch:
       - '/fix\/.+/'
