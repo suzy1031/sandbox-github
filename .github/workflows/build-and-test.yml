@@ -3,6 +3,12 @@ name: Node.js CI
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: read
 
 jobs:
   build:
@@ -20,10 +26,16 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run tests
-        run: npm test
+        run: npm run test:coverage
+
+      - name: Output test coverage report
+        uses: davelosert/vitest-coverage-report-action@v2.2.0
+        with:
+          json-summary-path: "./coverage/vitest/coverage-summary.json"
+          json-final-path: "./coverage/vitest/coverage-final.json"
 
   upload:
     runs-on: ubuntu-latest
