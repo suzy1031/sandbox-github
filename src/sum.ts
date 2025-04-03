@@ -2,6 +2,9 @@ export const sum = (a: number, b: number): number => a + b;
 
 // 掛け算
 export const multiply = (a: number, b: number): number => {
+  if (a < 0 || b < 0) {
+    throw new Error("Number must be non-negative.");
+  }
   return a * b;
 };
 
