@@ -1,6 +1,6 @@
 {
 	"name": "sandbox-github",
-	"version": "1.0.42",
+	"version": "1.0.44",
 	"main": "index.js",
 	"scripts": {
 		"test": "vitest",
