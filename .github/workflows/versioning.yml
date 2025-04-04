@@ -39,6 +39,7 @@ jobs:
             return newVersion;
 
       - name: Update package.json version
+        if: github.event_name != 'pull_request'
         run: |
           npm version --no-git-tag-version ${{ steps.increment_version.outputs.result }}
           git config --global user.name "GitHub Actions"
@@ -46,8 +47,3 @@ jobs:
           git add package.json
           git commit -m "chore: bump version to ${{ steps.increment_version.outputs.result }} [skip ci]"
           git push origin main
-
-      # - name: Create new tag
-      #   run: |
-      #     git tag v${{ steps.increment_version.outputs.result }}
-      #     git push origin v${{ steps.increment_version.outputs.result }}
