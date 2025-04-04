@@ -1,0 +1,50 @@
+name: Version Increment
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  version-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest tag
+        id: get_tag
+        run: |
+          git fetch --tags
+          latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+          echo "latest_tag=$latest_tag" >> $GITHUB_OUTPUT
+
+      - name: Increment version
+        id: increment_version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const currentVersion = "${{ steps.get_tag.outputs.latest_tag }}".replace(/^v/, '');
+            const versionParts = currentVersion.split('.').map(Number);
+
+            // Increment patch version by default
+            versionParts[2] += 1;
+
+            const newVersion = versionParts.join('.');
+            return newVersion;
+
+      - name: Update package.json version
+        run: |
+          npm version --no-git-tag-version ${{ steps.increment_version.outputs.result }}
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add package.json
+          git commit -m "chore: bump version to ${{ steps.increment_version.outputs.result }} [skip ci]"
+          git push origin main
+
+      # - name: Create new tag
+      #   run: |
+      #     git tag v${{ steps.increment_version.outputs.result }}
+      #     git push origin v${{ steps.increment_version.outputs.result }}
