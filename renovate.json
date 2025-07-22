@@ -1,8 +1,0 @@
-{
-	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:recommended", "group:linters"],
-	"dependencyDashboard": false,
-	"automerge": false,
-	"addLabels": ["renovate"],
-	"prConcurrentLimit": 0
-}
